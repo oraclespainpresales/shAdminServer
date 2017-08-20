@@ -86,7 +86,7 @@ if (!fs.accessSync(options.config, fs.constants.R_OK)) {
 
 log.level = (options.verbose) ? 'verbose' : 'info';
 
-const config = require('./' + options.config);
+const config = require(options.config);
 
 // Initializing REST & WS variables BEGIN
 const PORT = 1111
