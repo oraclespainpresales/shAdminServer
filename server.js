@@ -21,6 +21,7 @@ const PROCESSNAME = "Wedo Hospitality Demo - Admin Server"
     , AUTHOR   = "Carlos Casares <carlos.casares@oracle.com>"
     , PROCESS  = 'PROCESS'
     , REST     = 'REST'
+    , OS       = 'OS'
 ;
 
 log.timestamp = true;
@@ -174,6 +175,7 @@ async.series( {
 
       log.verbose(REST, "Incoming request for component '%s', operation '%s'%s", component.component, operation.action, (operation.params) ? " and parameters: '" + JSON.stringify(req.body) + "'" : "");
 
+      log.verbose(OS, "Executing action '%s'", operation.action);
       exec(operation.action, (err, stdout, stderr) => {
         if (err) {
           res.status(500).send(err.message);
