@@ -21,7 +21,7 @@ module.exports = {
 	        command: "hostname -I"
 	      }
 	    ]
-		}
+		},
 	  {
 	    component: "cozmo",
 	    description: "Cozmo controller in Python",
