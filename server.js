@@ -11,7 +11,7 @@ var log = require('npmlog-ts')
   , _ = require('lodash')
   , commandLineArgs = require('command-line-args')
   , getUsage = require('command-line-usage')
-  , exec = require('child_process').execFile
+  , exec = require('child_process').exec
   , fs = require('fs')
 ;
 
