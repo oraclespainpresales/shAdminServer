@@ -178,11 +178,14 @@ async.series( {
       log.verbose(OS, "Executing action '%s'", operation.action);
       exec(operation.command, (err, stdout, stderr) => {
         if (err) {
+          log.error(OS, err.message);
           res.status(500).send(err.message);
           return;
         }
         var result = stdout + stderr;
         res.status(200).send(result);
+        log.verbose(OS, "Command executed successfully. Results:");
+        log.verbose(OS, result);
       });
     });
     server.listen(PORT, function() {
