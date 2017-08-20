@@ -139,6 +139,13 @@ async.series( {
     app.use(cors());
     app.use(CONTEXTROOT, router);
     router.get('/', (req, res) => {
+      var response = _.cloneDeep(config);
+      _.forEach(response.components, (c) => {
+        _.forEach(c.actions, (a) => {
+          // We don't want to unveil the actual command
+          delete a.command;
+        });
+      });
       res.status(200).json(config);
       return;
     });
