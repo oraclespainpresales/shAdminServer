@@ -138,7 +138,11 @@ async.series( {
     app.use(bodyParser.json());
     app.use(cors());
     app.use(CONTEXTROOT, router);
-    router.post(OPURI, function(req, res) {
+    router.get('/', (req, res) => {
+      res.status(200).json(config);
+      return;
+    });
+    router.post(OPURI, (req, res) => {
       if (!req.params.component) {
         var msg = "Missing component";
         log.error(REST, msg);
