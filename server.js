@@ -132,6 +132,7 @@ async.series( {
     callbackMainSeries(null);
   },
   rest: function(callbackMainSeries) {
+    log.info(PROCESS, "Using configuration file: '%s'", options.config);
     log.info(REST, "Initializing REST Server");
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
