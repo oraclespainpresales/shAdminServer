@@ -88,7 +88,7 @@ log.level = (options.verbose) ? 'verbose' : 'info';
 const config = require('./' + options.config);
 
 // Initializing REST & WS variables BEGIN
-const PORT = 3666
+const PORT = 1111
     , CONTEXTROOT = '/admin'
     , OPURI       = '/:component/:op/:params?'
 ;
