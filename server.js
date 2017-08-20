@@ -176,7 +176,7 @@ async.series( {
       log.verbose(REST, "Incoming request for component '%s', operation '%s'%s", component.component, operation.action, (operation.params) ? " and parameters: '" + JSON.stringify(req.body) + "'" : "");
 
       log.verbose(OS, "Executing action '%s'", operation.action);
-      exec(operation.action, (err, stdout, stderr) => {
+      exec(operation.command, (err, stdout, stderr) => {
         if (err) {
           res.status(500).send(err.message);
           return;
