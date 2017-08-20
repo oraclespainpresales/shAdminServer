@@ -146,7 +146,7 @@ async.series( {
           delete a.command;
         });
       });
-      res.status(200).json(config);
+      res.status(200).json(response);
       return;
     });
     router.post(OPURI, (req, res) => {
