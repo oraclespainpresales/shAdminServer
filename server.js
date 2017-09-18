@@ -149,6 +149,29 @@ async.series( {
       res.status(200).json(response);
       return;
     });
+    router.get(OPURI, (req, res) => {
+      if (!req.params.component) {
+        var msg = "Missing component";
+        log.error(REST, msg);
+        res.status(400).send(msg);
+        return;
+      }
+      if (!req.params.op) {
+        var msg = "Missing operation";
+        log.error(REST, msg);
+        res.status(400).send(msg);
+        return;
+      }
+
+      var err = assertRequest('GET', req.params.component, req.params.op);
+      if (err) {
+        log.error(REST, err);
+        res.status(400).send(err);
+        return;
+      }
+
+      execOp(req, res);
+    };
     router.post(OPURI, (req, res) => {
       if (!req.params.component) {
         var msg = "Missing component";
@@ -163,42 +186,14 @@ async.series( {
         return;
       }
 
-      var err = assertRequest(req.params.component, req.params.op);
+      var err = assertRequest('POST', req.params.component, req.params.op);
       if (err) {
         log.error(REST, err);
         res.status(400).send(err);
         return;
       }
 
-      // All ok, let's point to the right object
-      component = _.find(config.components, ['component', req.params.component]);
-      operation = _.find(component.actions, ['action', req.params.op]);
-
-      if (operation.params) {
-        // Operation has params, let's check if those have been sent
-        // TODO
-        if (!req.body) {
-          var msg = "Missing operation payload";
-          log.error(REST, msg);
-          res.status(400).send(msg);
-          return;
-        }
-      }
-
-      log.verbose(REST, "Incoming request for component '%s', operation '%s'%s", component.component, operation.action, (operation.params) ? " and parameters: '" + JSON.stringify(req.body) + "'" : "");
-
-      log.verbose(OS, "Executing action '%s'", operation.action);
-      exec(operation.command, (err, stdout, stderr) => {
-        if (err) {
-          log.error(OS, err.message);
-          res.status(500).send(err.message);
-          return;
-        }
-        var result = stdout + stderr;
-        res.status(200).send(result);
-        log.verbose(OS, "Command executed successfully. Results:");
-        log.verbose(OS, result);
-      });
+      execOp(req, res);
     });
     server.listen(PORT, function() {
       log.info(REST, "REST Server initialized successfully at http://localhost:%d%s", PORT, CONTEXTROOT + OPURI);
@@ -213,7 +208,7 @@ async.series( {
   }
 });
 
-function assertRequest(component, op) {
+function assertRequest(verb, component, op) {
   var c = _.find(config.components, ['component', component]);
   if (!c) {
     return util.format("Component '%s' not found in config file. Valid components for this server ('%s') are: %s", component, config.server, _.map(config.components, 'component').toString());
@@ -222,5 +217,40 @@ function assertRequest(component, op) {
   if (!o) {
     return util.format("Operation '%s' not found for component '%s'. Valid operations are: %s", op, c.component, _.map(c.actions, 'action').toString());
   }
+  if (o.verb !=== verb) {
+    return util.format("Operation '%s' not found for component '%s' and verb '%s'.", op, c.component, verb);
+  }
   return _.noop();
+}
+
+function execOp(req, res) {
+  // All ok, let's point to the right object
+  component = _.find(config.components, ['component', req.params.component]);
+  operation = _.find(component.actions, ['action', req.params.op]);
+
+  if (operation.params) {
+    // Operation has params, let's check if those have been sent
+    // TODO
+    if (!req.body) {
+      var msg = "Missing operation payload";
+      log.error(REST, msg);
+      res.status(400).send(msg);
+      return;
+    }
+  }
+
+  log.verbose(REST, "Incoming request for component '%s', operation '%s'%s", component.component, operation.action, (operation.params) ? " and parameters: '" + JSON.stringify(req.body) + "'" : "");
+
+  log.verbose(OS, "Executing action '%s'", operation.action);
+  exec(operation.command, (err, stdout, stderr) => {
+    if (err) {
+      log.error(OS, err.message);
+      res.status(500).send(err.message);
+      return;
+    }
+    var result = stdout + stderr;
+    res.status(200).send(result);
+    log.verbose(OS, "Command executed successfully. Results:");
+    log.verbose(OS, result);
+  });
 }

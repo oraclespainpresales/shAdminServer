@@ -4,18 +4,21 @@ module.exports = {
 		{
 			component: "os",
 	    description: "OS operations",
-	    actions: [
+			actions: [
 	      {
+					verb: "POST",
 	        action: "reboot",
 	        description: "Reboot",
 	        command: "sudo shutdown -r now"
 	      },
 	      {
+					verb: "POST",
 	        action: "shutdown",
 	        description: "Shutdown",
 	        command: "sudo shutdown now"
 	      },
 	      {
+					verb: "GET",
 	        action: "ip",
 	        description: "Get local IP",
 	        command: "hostname -I"
@@ -27,21 +30,25 @@ module.exports = {
 	    description: "IoTCS Wrapper",
 	    actions: [
 	      {
+					verb: "GET",
 	        action: "pid",
 	        description: "Return the PID of the process if it's running",
 					command: "cat /home/pi/.pm2/pids/hackathonwrapper*.pid"
 	      },
 	      {
+					verb: "POST",
 	        action: "start",
 	        description: "Start the process",
 	        command: "pm2 start hackathonwrapper"
 	      },
 	      {
+					verb: "POST",
 	        action: "stop",
 	        description: "Stop the process",
 	        command: "pm2 stop hackathonwrapper"
 	      },
 	      {
+					verb: "POST",
 	        action: "restart",
 	        description: "Restart the process",
 	        command: "pm2 restart hackathonwrapper"
