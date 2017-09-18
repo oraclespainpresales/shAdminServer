@@ -18,7 +18,7 @@ module.exports = {
 	        command: "sudo shutdown now"
 	      },
 	      {
-					verb: "GET",
+					verb: "POST",
 	        action: "ip",
 	        description: "Get local IP",
 	        command: "hostname -I"
@@ -30,7 +30,7 @@ module.exports = {
 	    description: "Cozmo controller in Python",
 	    actions: [
 	      {
-					verb: "GET",
+					verb: "POST",
 	        action: "pid",
 	        description: "Return the PID of the process if it's running",
 					command: "cat /home/pi/.pm2/pids/cozmo*.pid"
@@ -60,7 +60,7 @@ module.exports = {
 	    description: "Webserver for KIOSKIN",
 	    actions: [
 	      {
-					verb: "GET",
+					verb: "POST",
 	        action: "pid",
 	        description: "Return the PID of the process if it's running",
 	        command: "cat /home/pi/.pm2/pids/webserver*.pid"
@@ -90,7 +90,7 @@ module.exports = {
 	    description: "Ultrasonic Sensor",
 	    actions: [
 	      {
-					verb: "GET",
+					verb: "POST",
 	        action: "pid",
 	        description: "Return the PID of the process if it's running",
 	        command: "cat /home/pi/.pm2/pids/ultrasonic*.pid"
@@ -120,7 +120,7 @@ module.exports = {
 	    description: "OEP",
 	    actions: [
 				{
-					verb: "GET",
+					verb: "POST",
 	        action: "pid",
 	        description: "Return the PID of the process if it's running",
 	        command: "cat /home/pi/.pm2/pids/oep*.pid"

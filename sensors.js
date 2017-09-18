@@ -18,7 +18,7 @@ module.exports = {
 	        command: "sudo shutdown now"
 	      },
 	      {
-					verb: "GET",
+					verb: "POST",
 	        action: "ip",
 	        description: "Get local IP",
 	        command: "hostname -I"
@@ -30,7 +30,7 @@ module.exports = {
 	    description: "IoTCS Wrapper",
 	    actions: [
 	      {
-					verb: "GET",
+					verb: "POST",
 	        action: "pid",
 	        description: "Return the PID of the process if it's running",
 					command: "cat /home/pi/.pm2/pids/hackathonwrapper*.pid"
