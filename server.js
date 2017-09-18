@@ -217,7 +217,7 @@ function assertRequest(verb, component, op) {
   if (!o) {
     return util.format("Operation '%s' not found for component '%s'. Valid operations are: %s", op, c.component, _.map(c.actions, 'action').toString());
   }
-  if (o.verb !=== verb) {
+  if (o.verb !== verb) {
     return util.format("Operation '%s' not found for component '%s' and verb '%s'.", op, c.component, verb);
   }
   return _.noop();
