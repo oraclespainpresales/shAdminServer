@@ -171,7 +171,7 @@ async.series( {
       }
 
       execOp(req, res);
-    };
+    });
     router.post(OPURI, (req, res) => {
       if (!req.params.component) {
         var msg = "Missing component";
