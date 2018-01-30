@@ -25,6 +25,18 @@ module.exports = {
 	      }
 	    ]
 		},
+		{
+			component: "nuki",
+			description: "NUKI workaround",
+			actions: [
+	      {
+					verb: "GET",
+	        action: "UNLATCH",
+	        description: "UNLATCH door",
+					command: "curl -X GET http://nuki:8080/lockAction?nukiId=115675265&token=s3z1TG&action=3"
+	      }
+			]
+		},
 	  {
 	    component: "cozmo",
 	    description: "Cozmo controller in Python",
