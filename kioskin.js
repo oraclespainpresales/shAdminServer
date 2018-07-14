@@ -33,7 +33,7 @@ module.exports = {
 					verb: "GET",
 	        action: "UNLATCH",
 	        description: "UNLATCH door",
-					command: "curl -X GET \"http://nuki:8080/lockAction?nukiId=115675265&token=s3z1TG&action=3\""
+					command: "curl -s -X GET \"http://nuki:8080/lockAction?nukiId=115675265&token=s3z1TG&action=3\""
 	      }
 			]
 		},
