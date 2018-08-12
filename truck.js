@@ -25,7 +25,7 @@ module.exports = {
 	      },
 				{
 					verb: "POST",
-	        action: "restartbletooth",
+	        action: "restartbluetooth",
 	        description: "Restart bluetooth service",
 	        command: "sudo systemctl restart bluetooth"
 	      }
