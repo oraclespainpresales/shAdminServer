@@ -62,7 +62,7 @@ module.exports = {
 	    ]
 	  },
 		{
-	    component: "Brother",
+	    component: "brother",
 	    description: "Brother Printer Controller",
 	    actions: [
 	      {
