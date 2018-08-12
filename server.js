@@ -153,20 +153,20 @@ async.series( {
       if (!req.params.component) {
         var msg = "Missing component";
         log.error(REST, msg);
-        res.status(400).send(msg);
+        res.status(400).send({result: msg});
         return;
       }
       if (!req.params.op) {
         var msg = "Missing operation";
         log.error(REST, msg);
-        res.status(400).send(msg);
+        res.status(400).send({result: msg});
         return;
       }
 
       var err = assertRequest('GET', req.params.component, req.params.op);
       if (err) {
         log.error(REST, err);
-        res.status(400).send(err);
+        res.status(400).send({result: err});
         return;
       }
 
@@ -176,20 +176,20 @@ async.series( {
       if (!req.params.component) {
         var msg = "Missing component";
         log.error(REST, msg);
-        res.status(400).send(msg);
+        res.status(400).send({result: msg});
         return;
       }
       if (!req.params.op) {
         var msg = "Missing operation";
         log.error(REST, msg);
-        res.status(400).send(msg);
+        res.status(400).send({result: msg});
         return;
       }
 
       var err = assertRequest('POST', req.params.component, req.params.op);
       if (err) {
         log.error(REST, err);
-        res.status(400).send(err);
+        res.status(400).send({result: err});
         return;
       }
 
@@ -234,7 +234,7 @@ function execOp(req, res) {
     if (!req.body) {
       var msg = "Missing operation payload";
       log.error(REST, msg);
-      res.status(400).send(msg);
+      res.status(400).send({result: msg});
       return;
     }
   }
@@ -245,11 +245,11 @@ function execOp(req, res) {
   exec(operation.command, (err, stdout, stderr) => {
     if (err) {
       log.error(OS, err.message);
-      res.status(500).send(err.message);
+      res.status(500).send({result: err.message});
       return;
     }
     var result = stdout + stderr;
-    res.status(200).send(result);
+    res.status(200).send({result: msg});
     log.verbose(OS, "Command executed successfully. Results:");
     log.verbose(OS, result);
   });
