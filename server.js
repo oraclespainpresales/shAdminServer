@@ -241,17 +241,17 @@ function execOp(req, res) {
 
   log.verbose(REST, "Incoming request for component '%s', operation '%s'%s", component.component, operation.action, (operation.params) ? " and parameters: '" + JSON.stringify(req.body) + "'" : "");
 
-  log.verbose(OS, "Executing action '%s'", operation.action);
+  log.verbose(component.component.toUpperCase(), "Executing action '%s'", operation.action);
   exec(operation.command, (err, stdout, stderr) => {
     if (err) {
-      log.error(OS, err.message);
+      log.error(component.component.toUpperCase(), err.message);
       res.status(500).send({result: err.message});
       return;
     }
     var result = stdout + stderr;
     result = _.trim(result);
     res.status(200).send({result: result});
-    log.verbose(OS, "Command executed successfully. Results:");
-    log.verbose(OS, result);
+    log.verbose(component.component.toUpperCase(), "Command executed successfully. Results:");
+    log.verbose(component.component.toUpperCase(), result);
   });
 }
