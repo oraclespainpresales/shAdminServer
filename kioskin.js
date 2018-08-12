@@ -23,6 +23,12 @@ module.exports = {
 	        description: "Get local IP",
 	        command: "hostname -I"
 	      }
+				{
+					verb: "POST",
+	        action: "restartbletooth",
+	        description: "Restart bluetooth service",
+	        command: "sudo systemctl restart bluetooth"
+	      }
 	    ]
 		},
 		{
@@ -87,7 +93,7 @@ module.exports = {
 					verb: "POST",
 	        action: "stop",
 	        description: "Stop the process",
-	        command: "pm2 start webserver"
+	        command: "pm2 stop webserver"
 	      },
 	      {
 					verb: "POST",
@@ -117,7 +123,7 @@ module.exports = {
 					verb: "POST",
 	        action: "stop",
 	        description: "Stop the process",
-	        command: "pm2 start webserver"
+	        command: "pm2 stop webserver"
 	      },
 	      {
 					verb: "POST",
@@ -147,7 +153,7 @@ module.exports = {
 					verb: "POST",
 	        action: "stop",
 	        description: "Stop the process",
-	        command: "pm2 start oep"
+	        command: "pm2 stop oep"
 	      },
 	      {
 					verb: "POST",
