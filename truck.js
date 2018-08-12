@@ -33,9 +33,39 @@ module.exports = {
 	      }
 	    ]
 		},
-	  {
+		{
 	    component: "truck",
 	    description: "Truck Controller",
+	    actions: [
+	      {
+					verb: "POST",
+	        action: "pid",
+	        description: "Return the PID of the process if it's running",
+	        command: "cat /home/pi/.pm2/pids/wiTruckHandler*.pid"
+	      },
+	      {
+					verb: "POST",
+	        action: "start",
+	        description: "Start the process",
+	        command: "pm2 start wiTruckHandler"
+	      },
+	      {
+					verb: "POST",
+	        action: "stop",
+	        description: "Stop the process",
+	        command: "pm2 stop wiTruckHandler"
+	      },
+	      {
+					verb: "POST",
+	        action: "restart",
+	        description: "Restart the process",
+	        command: "old=`ps -ef | grep wiTruckHandler | grep -v grep | awk '{print $2}'`;pm2 restart wiTruckHandler > /dev/null; echo \"Old PID: $old. New PID:\" `pm2 pid wiTruckHandler`"
+	      }
+	    ]
+	  },
+	  {
+	    component: "sensors",
+	    description: "Sensors Controller",
 	    actions: [
 	      {
 					verb: "POST",
