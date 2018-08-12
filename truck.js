@@ -9,16 +9,18 @@ module.exports = {
 					verb: "POST",
 	        action: "reboot",
 	        description: "Reboot",
-	        command: "sudo shutdown -r now"
+	        command: "sudo shutdown -r now",
+					preresponse: true
 	      },
 	      {
 					verb: "POST",
 	        action: "shutdown",
 	        description: "Shutdown",
 	        command: "sudo shutdown now"
+					preresponse: true
 	      },
 	      {
-					verb: "POST",
+					verb: "GET",
 	        action: "ip",
 	        description: "Get local IP",
 	        command: "hostname -I"

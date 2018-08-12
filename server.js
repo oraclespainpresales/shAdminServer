@@ -242,6 +242,10 @@ function execOp(req, res) {
   log.verbose(REST, "Incoming request for component '%s', operation '%s'%s", component.component, operation.action, (operation.params) ? " and parameters: '" + JSON.stringify(req.body) + "'" : "");
 
   log.verbose(component.component.toUpperCase(), "Executing action '%s'", operation.action);
+  if (operation.preresponse) {
+    res.status(200).send({result: "Command processed successfully"});
+    res.end();
+  }
   exec(operation.command, (err, stdout, stderr) => {
     if (err) {
       log.error(component.component.toUpperCase(), err.message);
@@ -250,7 +254,10 @@ function execOp(req, res) {
     }
     var result = stdout + stderr;
     result = _.trim(result);
-    res.status(200).send({result: result});
+    if (!operation.preresponse) {
+      res.status(200).send({result: result});
+      res.end();
+    }
     log.verbose(component.component.toUpperCase(), "Command executed successfully. Results:");
     log.verbose(component.component.toUpperCase(), result);
   });
