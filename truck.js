@@ -22,6 +22,12 @@ module.exports = {
 	        action: "ip",
 	        description: "Get local IP",
 	        command: "hostname -I"
+	      },
+				{
+					verb: "POST",
+	        action: "restartbletooth",
+	        description: "Restart bluetooth service",
+	        command: "sudo systemctl restart bluetooth"
 	      }
 	    ]
 		},
