@@ -16,7 +16,7 @@ module.exports = {
 					verb: "POST",
 	        action: "shutdown",
 	        description: "Shutdown",
-	        command: "sudo shutdown now"
+	        command: "sudo shutdown now",
 					preresponse: true
 	      },
 	      {
