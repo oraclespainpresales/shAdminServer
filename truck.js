@@ -87,7 +87,6 @@ module.exports = {
 					verb: "POST",
 	        action: "restart",
 	        description: "Restart the process",
-	        command: "pm2 restart brother"
 					command: "old=`ps -ef | grep startRest | grep -v grep | awk '{print $2}'`;pm2 restart brother > /dev/null; echo \"Old PID: $old. New PID:\" `pm2 pid brother`"
 	      }
 	    ]
