@@ -249,7 +249,7 @@ function execOp(req, res) {
       return;
     }
     var result = stdout + stderr;
-    res.status(200).send({result: msg});
+    res.status(200).send({result: result});
     log.verbose(OS, "Command executed successfully. Results:");
     log.verbose(OS, result);
   });
