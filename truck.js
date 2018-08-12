@@ -27,7 +27,7 @@ module.exports = {
 					verb: "POST",
 	        action: "restartbluetooth",
 	        description: "Restart bluetooth service",
-	        command: "sudo systemctl restart bluetooth;echo \"New PID: \"`ps -ef | grep bluetoothd | grep -v grep | awk '{print $2}'`"
+	        command: "old=`ps -ef | grep bluetoothd | grep -v grep | awk '{print $2}'`;sudo systemctl restart bluetooth;echo \"Old PID:$old. New PID: \"`ps -ef | grep bluetoothd | grep -v grep | awk '{print $2}'`"
 	      }
 	    ]
 		},
