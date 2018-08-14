@@ -95,7 +95,7 @@ module.exports = {
 					verb: "POST",
 					action: "restart",
 					description: "Restart the process",
-					command: "old=`ps -ef | grep iot_mvn_program | grep -v grep | awk '{print $2}'`;pm2 restart iot_mvn_program > /dev/null; echo \"Old PID: $old. New PID:\" `pm2 pid iot_mvn_program`"
+					command: "old=`ps -ef | grep spring-boot | grep -v grep | awk '{print $2}'`;pm2 restart iot_mvn_program > /dev/null; echo \"Old PID: $old. New PID:\" `pm2 pid iot_mvn_program`"
 				}
 			]
 		}
