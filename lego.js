@@ -59,13 +59,13 @@ module.exports = {
 					verb: "POST",
 	        action: "startarm",
 	        description: "Start the arm",
-	        command: "curl http://localhost:8081/initialize/ > /dev/null;curl http://localhost:8081/move_start/"
+	        command: "curl http://localhost:8081/initialize/ > /dev/null;curl -s http://localhost:8081/move_start/"
 	      },
 				{
 					verb: "POST",
 	        action: "stoparm",
 	        description: "Stop the legoroboarm",
-	        command: "curl http://localhost:8081/move_stop/"
+	        command: "curl -s http://localhost:8081/move_stop/"
 	      }
 	    ]
 	  }
