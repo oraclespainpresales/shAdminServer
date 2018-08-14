@@ -66,7 +66,37 @@ module.exports = {
 	        action: "stoparm",
 	        description: "Stop the legoroboarm",
 	        command: "curl -s http://localhost:8081/move_stop/"
-	      }
+	      },
+				{
+			    component: "iot",
+			    description: "IoT Controller",
+			    actions: [
+			      {
+							verb: "POST",
+			        action: "pid",
+			        description: "Return the PID of the process if it's running",
+			        command: "cat /home/robot/.pm2/pids/iot_mvn_program*.pid"
+			      },
+			      {
+							verb: "POST",
+			        action: "start",
+			        description: "Start the process",
+			        command: "pm2 start iot_mvn_program"
+			      },
+			      {
+							verb: "POST",
+			        action: "stop",
+			        description: "Stop the process",
+			        command: "pm2 stop iot_mvn_program"
+			      },
+			      {
+							verb: "POST",
+			        action: "restart",
+			        description: "Restart the process",
+			        command: "old=`ps -ef | grep iot_mvn_program | grep -v grep | awk '{print $2}'`;pm2 restart iot_mvn_program > /dev/null; echo \"Old PID: $old. New PID:\" `pm2 pid iot_mvn_program`"
+			      }
+			    ]
+			  }
 	    ]
 	  }
 	]
