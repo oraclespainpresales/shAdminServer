@@ -120,6 +120,12 @@ module.exports = {
 	        action: "restart",
 	        description: "Restart the process",
 					command: "old=`ps -ef | grep startRest | grep -v grep | awk '{print $2}'`;pm2 restart brother > /dev/null; echo \"Old PID: $old. New PID:\" `pm2 pid brother`"
+	      },
+				{
+					verb: "POST",
+	        action: "test",
+	        description: "Print a test",
+					command: "curl -s -X POST -d '{\"dataFormat\":\".png\",\"ImageURL\":\"http://infra.digitalpracticespain.com:8080/media/WEDO_teamBW.png\",\"ProductId\":\"NA4JHHJJ3GR\"}' http://localhost:8080/print/"
 	      }
 	    ]
 	  },
