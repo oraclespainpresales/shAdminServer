@@ -1,5 +1,5 @@
 module.exports = {
-	server: 'TRUCK',
+	server: 'EV3',
 	components: [
 		{
 			component: "os",
@@ -59,7 +59,7 @@ module.exports = {
 					verb: "POST",
 	        action: "startarm",
 	        description: "Start the arm",
-	        command: "curl http://localhost:8081/initialize/ > /dev/null;curl -s http://localhost:8081/move_start/"
+	        command: "curl http://localhost:8081/initialize/ > /dev/null 2>&1;curl -s http://localhost:8081/move_start/"
 	      },
 				{
 					verb: "POST",
