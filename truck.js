@@ -35,7 +35,7 @@ module.exports = {
 					verb: "GET",
 	        action: "version",
 	        description: "Get image version",
-	        command: "\"`cat /version`\""
+	        command: "cat /version"
 	      },
 	    ]
 		},
