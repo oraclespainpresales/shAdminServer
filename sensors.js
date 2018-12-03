@@ -22,7 +22,13 @@ module.exports = {
 	        action: "ip",
 	        description: "Get local IP",
 	        command: "hostname -I"
-	      }
+	      },
+				{
+					verb: "GET",
+	        action: "version",
+	        description: "Get image version",
+	        command: "cat /version"
+	      },
 	    ]
 		},
 	  {

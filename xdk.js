@@ -30,7 +30,13 @@ module.exports = {
 	        action: "restartbluetooth",
 	        description: "Restart bluetooth service",
 	        command: "old=`ps -ef | grep bluetoothd | grep -v grep | awk '{print $2}'`;sudo systemctl restart bluetooth;echo \"Old PID:$old. New PID: \"`ps -ef | grep bluetoothd | grep -v grep | awk '{print $2}'`"
-	      }
+	      },
+				{
+					verb: "GET",
+	        action: "version",
+	        description: "Get image version",
+	        command: "cat /version"
+	      },
 	    ]
 		},
 		{
