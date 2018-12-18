@@ -131,7 +131,7 @@ module.exports = {
 					verb: "POST",
 	        action: "test",
 	        description: "Print a test",
-					command: "curl -s -X POST -d '{\"dataFormat\":\".png\",\"ImageURL\":\"http://infra.digitalpracticespain.com:8080/media/WEDO_teamBW.png\",\"ProductId\":\"NA4JHHJJ3GR\"}' http://localhost:8080/print/"
+					command: "curl -s -X POST -d '{\"dataFormat\":\".png\",\"ImageURL\":\"http://infra.wedoteam.io:8080/media/WEDO_teamBW.png\",\"ProductId\":\"NA4JHHJJ3GR\"}' http://localhost:8080/print/"
 	      }
 	    ]
 	  },
