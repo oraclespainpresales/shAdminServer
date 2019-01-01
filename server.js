@@ -23,7 +23,7 @@ const PROCESSNAME = "Wedo Hospitality Demo - Admin Server"
     , REST     = 'REST'
     , OS       = 'OS'
 ;
-//test github
+
 log.timestamp = true;
 // Misc END
 
