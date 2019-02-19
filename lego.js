@@ -31,6 +31,12 @@ module.exports = {
 	        description: "Get image version",
 	        command: "cat /version"
 	      },
+				{
+					verb: "GET",
+	        action: "ping",
+	        description: "Ping the RPi",
+	        command: "echo pong"
+	      },
 	    ]
 		},
 		{
